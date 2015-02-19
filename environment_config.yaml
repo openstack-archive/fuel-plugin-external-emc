@@ -1,0 +1,31 @@
+attributes:
+  emc_username:
+    value: "username"
+    label: "EMC VNX username"
+    description: "EMC VNX username."
+    weight: 75
+    type: "text"
+  emc_password:
+    value: "password"
+    label: "EMC VNX password"
+    description: "EMC VNX password."
+    weight: 80
+    type: "password"
+  emc_sp_a_ip:
+    value: ""
+    label: "EMC VNX SP A IP"
+    description: "EMC VNX Service Processor A IP address."
+    weight: 90
+    type: "text"
+  emc_sp_b_ip:
+    value: ""
+    label: "EMC VNX SP B IP"
+    description: "EMC VNX Service Processor B IP address."
+    weight: 90
+    type: "text"
+  emc_pool_name:
+    value: ""
+    label: "EMC VNX pool name"
+    description: "EMC VNX pool name (optional)"
+    weight: 95
+    type: "text"
