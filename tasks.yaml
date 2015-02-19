@@ -1,0 +1,21 @@
+- role: ['primary-controller']
+  stage: post_deployment/6100
+  type: puppet
+  parameters:
+    puppet_manifest: puppet/manifests/controller.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 360
+- role: ['controller']
+  stage: post_deployment/6101
+  type: puppet
+  parameters:
+    puppet_manifest: puppet/manifests/controller.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 360
+- role: ['compute']
+  stage: post_deployment/6102
+  type: puppet
+  parameters:
+    puppet_manifest: puppet/manifests/compute.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 360
