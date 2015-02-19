@@ -1,0 +1,32 @@
+#!/bin/bash
+set -eux
+
+ROOT="$(dirname `readlink -f $0`)"
+RPM_REPO="${ROOT}"/repositories/centos/
+DEB_REPO="${ROOT}"/repositories/ubuntu/
+mkdir -p $RPM_REPO
+mkdir -p $DEB_REPO
+
+# Downloads needed RPM or DEB packages
+function download {
+    case "$1" in
+        deb) REPO=$DEB_REPO;;
+        rpm) REPO=$RPM_REPO;;
+    esac
+    shift
+
+    while [ $# -gt 0 ]; do
+        FILE=$(basename "$1")
+        wget -qO - $1 > "$REPO/$FILE"
+        shift
+    done
+}
+
+download deb http://mirrors.kernel.org/ubuntu/pool/main/m/multipath-tools/multipath-tools_0.4.9-3ubuntu5_amd64.deb \
+             http://fuel-repository.mirantis.com/fuel-plugins/emc/ubuntu/navicli-linux-64-x86-en-us_7.33.2.0.51-1_all.deb
+
+download rpm http://mirror.centos.org/centos/6/os/x86_64/Packages/device-mapper-multipath-0.4.9-80.el6.x86_64.rpm \
+             http://mirror.centos.org/centos/6/os/x86_64/Packages/device-mapper-multipath-libs-0.4.9-80.el6.x86_64.rpm \
+             http://mirror.centos.org/centos/6/os/x86_64/Packages/kpartx-0.4.9-80.el6.x86_64.rpm \
+             http://fuel-repository.mirantis.com/fuel-plugins/emc/centos/NaviCLI-Linux-64-x86-en_US-7.33.3.0.72-1.x86_64.rpm
+
