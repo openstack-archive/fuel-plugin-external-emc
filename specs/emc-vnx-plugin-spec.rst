@@ -126,7 +126,7 @@ Work Items
 Dependencies
 ============
 
-* Fuel 6.0 and higher.
+* Fuel 6.1 and higher.
 
 Testing
 =======
