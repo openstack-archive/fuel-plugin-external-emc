@@ -1,0 +1,10 @@
+Verified+2: Jenkins
+Code-Review+2: Szymon Banka <sbanka@mirantis.com>
+Workflow+1: Szymon Banka <sbanka@mirantis.com>
+Code-Review+1: Irina <ipovolotskaya@mirantis.com>
+Code-Review+1: Dmitry Klenov <dklenov@mirantis.com>
+Submitted-by: Jenkins
+Submitted-at: Tue, 28 Apr 2015 10:41:03 +0000
+Reviewed-on: https://review.openstack.org/157542
+Project: stackforge/fuel-plugin-external-emc
+Branch: refs/heads/master
