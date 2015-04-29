@@ -38,7 +38,7 @@ class plugin_emc_vnx::controller {
     'DEFAULT/san_login':                        value => $plugin_settings['emc_username'];
     'DEFAULT/san_password':                     value => $plugin_settings['emc_password'];
     'DEFAULT/storage_vnx_authentication_type':  value => 'global';
-    'DEFAULT/destroy_empty_storage_group':      value => 'True';
+    'DEFAULT/destroy_empty_storage_group':      value => 'False';
     'DEFAULT/attach_detach_batch_interval':     value => '-1';
     'DEFAULT/naviseccli_path':                  value => '/opt/Navisphere/bin/naviseccli';
     'DEFAULT/initiator_auto_registration':      value => 'True';
