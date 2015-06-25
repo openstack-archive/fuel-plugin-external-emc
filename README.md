@@ -68,6 +68,24 @@ To install EMC VNX plugin, follow these steps:
         ---|---------|---------|----------------
         1  | emc_vnx | 1.0.0   | 2.0.0
 
+
+EMC VNX plugin removal
+----------------------
+
+To uninstall EMC VNX plugin, follow these steps:
+
+1. Delete all Environments in which EMC VNX plugin has been enabled.
+2. Uninstall the plugin:
+
+        # fuel plugins --remove emc_vnx==1.0.0
+
+3. Check if the plugin was uninstalled successfully:
+
+        # fuel plugins
+        id | name              | version | package_version
+        ---|-------------------|---------|----------------
+
+
 EMC VNX plugin configuration
 ----------------------------
 
