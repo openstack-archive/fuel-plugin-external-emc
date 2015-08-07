@@ -2,11 +2,11 @@
 name: emc_vnx
 title: EMC VNX driver for Cinder
 # Plugin version
-version: 1.0.0
+version: 2.0.0
 # Description
 description: Enables EMC VNX driver in Cinder
 # Required fuel version
-fuel_version: ['6.1']
+fuel_version: ['7.0']
 # Groups
 groups: ['storage::cinder']
 # Licenses
@@ -19,12 +19,12 @@ authors: ['Dmitry Klenov <dklenov@mirantis.com>', 'Piotr Misiak <pmisiak@miranti
 # The plugin is compatible with releases in the list
 releases:
   - os: ubuntu
-    version: 2014.2-6.1
+    version: 2015.1.0-7.0
     mode: ['ha']
     deployment_scripts_path: deployment_scripts/
     repository_path: repositories/ubuntu
   - os: centos
-    version: 2014.2-6.1
+    version: 2015.1.0-7.0
     mode: ['ha']
     deployment_scripts_path: deployment_scripts/
     repository_path: repositories/centos
