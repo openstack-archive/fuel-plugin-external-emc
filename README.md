@@ -14,7 +14,7 @@ Requirements
 
 | Requirement                      | Version/Comment |
 |:---------------------------------|:----------------|
-| Mirantis OpenStack compatibility | >= 6.1          |
+| Mirantis OpenStack compatibility | >= 7.0          |
 
 Limitations
 -----------
@@ -54,19 +54,19 @@ To install EMC VNX plugin, follow these steps:
     that. If you do not have the Fuel Master node yet, see
     [Quick Start Guide](https://software.mirantis.com/quick-start/):
 
-        # scp emc_vnx-1.0-1.0.0-0.noarch.rpm root@<Fuel_master_ip>:/tmp
+        # scp emc_vnx-2.0-2.0.0-0.noarch.rpm root@<Fuel_master_ip>:/tmp
 
 3. Log into the Fuel Master node. Install the plugin:
 
         # cd /tmp
-        # fuel plugins --install emc_vnx-1.0-1.0.0-0.noarch.rpm
+        # fuel plugins --install emc_vnx-2.0-2.0.0-0.noarch.rpm
 
 4. Check if the plugin was installed successfully:
 
         # fuel plugins
         id | name    | version | package_version
         ---|---------|---------|----------------
-        1  | emc_vnx | 1.0.0   | 2.0.0
+        1  | emc_vnx | 2.0.0   | 2.0.0
 
 EMC VNX plugin configuration
 ----------------------------
@@ -98,4 +98,4 @@ Contributors
 Dmitry Klenov <dklenov@mirantis.com> (PM)  
 Szymon Bańka <sbanka@mirantis.com> (developer)  
 Piotr Misiak <pmisiak@mirantis.com> (developer)  
-Dmitry Kalashnik <dkalashnik@mirantis.com> (QA engineer)  
+Dmitry Kalashnik <dkalashnik@mirantis.com> (QA engineer) 
