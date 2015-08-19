@@ -1,0 +1,10 @@
+Verified+2: Jenkins
+Code-Review+2: Bartosz Kupidura <bkupidura@mirantis.com>
+Workflow+1: Bartosz Kupidura <bkupidura@mirantis.com>
+Code-Review+1: Olena <omandryka@mirantis.com>
+Code-Review+1: Piotr Misiak <pmisiak@mirantis.com>
+Submitted-by: Jenkins
+Submitted-at: Wed, 19 Aug 2015 13:33:03 +0000
+Reviewed-on: https://review.openstack.org/213645
+Project: stackforge/fuel-plugin-external-emc
+Branch: refs/heads/master
