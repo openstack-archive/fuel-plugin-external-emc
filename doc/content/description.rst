@@ -30,3 +30,5 @@ Limitations
    In case this NIC fails, the communication with storage is lost.
 
 #. Fibre Channel driver is not supported.
+
+#. Emc plugin cannot be used together with cinder role.
