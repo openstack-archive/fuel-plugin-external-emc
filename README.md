@@ -82,8 +82,7 @@ EMC VNX plugin configuration
     storage pool available on EMC VNX. You can also use a Volume Type OpenStack
     feature to create a volume on a specific storage pool.
     For more information, see
-    [Multiple pools support](https://github.com/emc-openstack/vnx-direct-driver
-    /blob/master/README_ISCSI.md#multiple-pools-support)
+    [Multiple pools support](https://github.com/emc-openstack/vnx-direct-driver/blob/master/README_ISCSI.md#multiple-pools-support)
 3. Deploy the environment without a Cinder node. All required Cinder services
     are run on Controller nodes.
 
@@ -96,8 +95,7 @@ Build Instructions
 ------------------
 
 Instructions how build a plugin from source are available on:
-[How To: Build and install a plugin from source](https://wiki.openstack.org/wiki
-/Fuel/Plugins#How_To:_Build_and_install_a_plugin_from_source)
+[How To: Build and install a plugin from source](https://wiki.openstack.org/wiki/Fuel/Plugins#How_To:_Build_and_install_a_plugin_from_source)
 
 Contributors
 ------------
