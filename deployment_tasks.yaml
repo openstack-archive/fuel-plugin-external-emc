@@ -1,21 +1,27 @@
-- role: ['primary-controller']
-  stage: post_deployment/6100
+- id: emc-primary-controller
+  groups: ['primary-controller']
   type: puppet
   parameters:
     puppet_manifest: puppet/manifests/primary_controller.pp
     puppet_modules: puppet/modules:/etc/puppet/modules
     timeout: 360
-- role: ['controller']
-  stage: post_deployment/6101
+  required_for: [deploy_end]
+  requires: [controller_remaining_tasks]
+- id: emc-controller
+  role: ['controller']
   type: puppet
   parameters:
     puppet_manifest: puppet/manifests/controller.pp
     puppet_modules: puppet/modules:/etc/puppet/modules
     timeout: 360
-- role: ['compute']
-  stage: post_deployment/6102
+  requires: [post_deployment_start]
+  required_for: [post_deployment_end]
+- id: emc-compute
+  role: ['compute']
   type: puppet
   parameters:
     puppet_manifest: puppet/manifests/compute.pp
     puppet_modules: puppet/modules:/etc/puppet/modules
     timeout: 360
+  requires: [post_deployment_start]
+  required_for: [post_deployment_end]

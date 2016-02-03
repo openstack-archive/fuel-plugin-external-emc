@@ -1,0 +1,8 @@
+- name: 'storage:block:emc'
+  label: 'EMC'
+  description: 'EMC Driver for Cinder'
+  compatible:
+    - name: 'hypervisor:libvirt:*'
+  incompatible:
+    - name: 'storage:block:ceph'
+    - name: 'storage:block:lvm'

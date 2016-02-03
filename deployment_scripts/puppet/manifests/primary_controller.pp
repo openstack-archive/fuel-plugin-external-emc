@@ -14,3 +14,4 @@
 #    under the License.
 #
 include plugin_emc_vnx::primary_controller
+notice('MODULAR: emc/primary_controller.pp')

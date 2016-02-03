@@ -14,3 +14,4 @@
 #    under the License.
 #
 include plugin_emc_vnx::controller
+notice('MODULAR: emc/controller.pp')
