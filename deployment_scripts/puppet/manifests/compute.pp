@@ -14,3 +14,4 @@
 #    under the License.
 #
 include plugin_emc_vnx::compute
+notice('MODULAR: emc/compute.pp')
