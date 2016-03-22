@@ -36,5 +36,5 @@ Pool name (optional)               The name of the EMC VNX storage pool on
 
 3. Adjust other environment settings to your requirements and deploy the
    environment.  For more information, see `Mirantis OpenStack User Guide -
-   deploy changes <http://docs.mirantis.com/openstack/fuel/fuel-7.0
+   deploy changes <http://docs.mirantis.com/openstack/fuel/fuel-8.0
    /user-guide.html#deploy-changes>`_.
