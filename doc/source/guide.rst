@@ -13,7 +13,7 @@ volume and attach it to a newly created VM using for example
    *cinder create <volume size>* command:
 
    .. image:: images/create.png
-      :width: 50%
+      :width: 90%
 
 #. Using *cinder list* command (see the screenshot above), let’s check if the
    volume was created. The output provides information on ID, Status
@@ -31,7 +31,7 @@ volume and attach it to a newly created VM using for example
    EMC:
 
    .. image:: images/lunid.png
-      :width: 50%
+      :width: 90%
 
    In the given example there is one LUN with ID: 0, name:
    *volume-e1626d9e-82e8-4279-808e-5fcd18016720* (naming schema is
@@ -43,7 +43,7 @@ volume and attach it to a newly created VM using for example
    command):
 
    .. image:: images/glance.png
-      :width: 50%
+      :width: 90%
 
    Note the VM’s ID which is *48e70690-2590-45c7-b01d-6d69322991c3* in the
    given example.
@@ -53,20 +53,20 @@ volume and attach it to a newly created VM using for example
    the VM is running on the node-3 and it is active:
 
    .. image:: images/novaShow.png
-      :width: 50%
+      :width: 90%
 
 #. Attach the Cinder volume to the VM (use *nova volume-attach <VM id>
    <volume id>*)
    and verify using cinder list command:
 
    .. image:: images/volumeAttach.png
-      :width: 50%
+      :width: 90%
 
 #. To list storage groups configured on EMC VNX, use *naviseccli -h <SP IP>
    storagegroup -list* command:
 
    .. image:: images/storagegroup.png
-      :width: 50%
+      :width: 90%
 
    There is one “node-3” storage group with one LUN attached. The LUN has local
    ID 0 (ALU Number) and it is available as LUN 133 (HLU Number) for the
@@ -76,7 +76,7 @@ volume and attach it to a newly created VM using for example
    *naviseccli -h <SP IP> port -list -hba* command:
 
    .. image:: images/hba.png
-      :width: 50%
+      :width: 90%
 
    Look at “Logged In” parameter of each port. In the given example, all four
    sessions are active (in the output, it looks like Logged In: YES).
@@ -89,7 +89,7 @@ volume and attach it to a newly created VM using for example
 
 
    .. image:: images/iscsiadmin.png
-      :width: 50%
+      :width: 90%
 
    In the example, there are four active sessions (the same as on the EMC) and
    the multipath device dm-2 has been created. The multipath device has four

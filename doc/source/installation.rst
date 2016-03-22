@@ -36,19 +36,19 @@ EMC VNX plugin installation
    the Fuel Master node yet, see
    `Quick Start Guide <https://software.mirantis.com/quick-start/>`_::
 
-    # scp emc_vnx-2.0-2.0.0-1.noarch.rpm root@<the_Fuel_Master_node_IP>:/tmp
+    # scp emc_vnx-3.0-3.0.0-1.noarch.rpm root@<the_Fuel_Master_node_IP>:/tmp
 
 #. Log into the Fuel Master node. Install the plugin::
 
     # cd /tmp
-    # fuel plugins --install emc_vnx-2.0-2.0.0-1.noarch.rpm
+    # fuel plugins --install emc_vnx-3.0-3.0.0-1.noarch.rpm
 
 #. Check if the plugin was installed successfully::
 
     # fuel plugins
     id | name    | version | package_version
     ---|---------|---------|----------------
-    1  | emc_vnx | 2.0.0   | 2.0.0
+    1  | emc_vnx | 3.0.0   | 3.0.0
 
 
 EMC VNX plugin removal
@@ -58,7 +58,7 @@ EMC VNX plugin removal
 
 #. Uninstall the plugin:
 
-    # fuel plugins --remove emc_vnx==2.0.0
+    # fuel plugins --remove emc_vnx==3.0.0
 
 #. Check if the plugin was uninstalled successfully::
 
