@@ -22,11 +22,11 @@ function download {
     done
 }
 
-download deb http://mirrors.kernel.org/ubuntu/pool/main/m/multipath-tools/multipath-tools_0.4.9-3ubuntu5_amd64.deb \
+download deb http://archive.ubuntu.com/ubuntu/pool/main/m/multipath-tools/multipath-tools_0.4.9-3ubuntu5_amd64.deb \
              http://fuel-repository.mirantis.com/fuel-plugins/emc/ubuntu/navicli-linux-64-x86-en-us_7.33.2.0.51-1_all.deb
 
-download rpm http://mirror.centos.org/centos/6/os/x86_64/Packages/device-mapper-multipath-0.4.9-87.el6.x86_64.rpm \
-             http://mirror.centos.org/centos/6/os/x86_64/Packages/device-mapper-multipath-libs-0.4.9-87.el6.x86_64.rpm \
-             http://mirror.centos.org/centos/6/os/x86_64/Packages/kpartx-0.4.9-87.el6.x86_64.rpm \
+download rpm http://vault.centos.org/6.7/os/x86_64/Packages/os/x86_64/Packages/device-mapper-multipath-0.4.9-87.el6.x86_64.rpm \
+             http://vault.centos.org/6.7/os/x86_64/Packages/os/x86_64/Packages/device-mapper-multipath-libs-0.4.9-87.el6.x86_64.rpm \
+             http://vault.centos.org/6.7/os/x86_64/Packages/os/x86_64/Packages/kpartx-0.4.9-87.el6.x86_64.rpm \
              http://fuel-repository.mirantis.com/fuel-plugins/emc/centos/NaviCLI-Linux-64-x86-en_US-7.33.3.0.72-1.x86_64.rpm
 
