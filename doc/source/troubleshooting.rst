@@ -1,23 +1,32 @@
-=====================
-Troubleshooting Guide
-=====================
+Troubleshooting
+===============
 
-Most Cinder errors are caused by incorrect volume configurations that
-result in volume creation failures. To resolve these failures, review these logs
-on Controller nodes:
+Most Cinder errors are caused by incorrect volume configuration that
+result in the volume creation failures. To resolve these failures, use the
+Cinder logs.
 
-#. cinder-api log (/var/log/cinder/api.log)
-#. cinder-volume log (/var/log/cinder/volume.log)
+**To review the Cinder logs**
 
-The cinder-api log is useful for determining if you have endpoint or connectivity
-issues. If you send a request to create a volume and it fails, review the cinder-api
-log to determine whether the request made it to the Block Storage service.
-If the request is logged and you see no errors or trace-backs, check the cinder-volume
-log for errors or trace-backs.
+If you have issues with Cinder, find and review the following Cinder logs on
+controller nodes:
 
-Cinder services are running as pacemaker resources. To verify status of services,
-issue following command on one of Controllers::
+#. The ``cinder-api`` log located at ``/var/log/cinder/api.log``.
+#. The ``cinder-volume`` log located at ``/var/log/cinder/volume.log``.
+
+Check the ``cinder-api`` log to determine whether you have the endpoint or
+connectivity issues. If, for example, the *create volume* request fails,
+review the ``cinder-api`` log to check whether the request to
+the Block Storage service succeeded. If the request is logged, and you see
+no errors or tracebacks, check the ``cinder-volume`` log for errors or
+tracebacks.
+
+**To verify the status of Cinder services**
+
+Cinder services are running as Pacemaker resources. To verify the status of
+services, run the following command on one of controller nodes:
+
+.. code-block:: console
 
     # pcs resource show
 
-All Cinder services should be in "Started" mode.
+All Cinder services should be in the ``started`` mode.

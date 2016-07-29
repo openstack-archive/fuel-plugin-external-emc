@@ -1,67 +1,106 @@
-==================
-Installation Guide
-==================
+.. _install:
 
-EMC VNX backend configuration
-============================================
+Requirements
+============
 
-Before starting a deployment, you have to preconfigure EMC VNX array and
-connect it properly to the environment. Both EMC SP IPs and all iSCSI ports
-should be available over storage interface from OpenStack nodes. To learn more
-about EMC VNX configuration, see `The official EMC VNX series documentation
-<https://mydocuments.emc.com/DynDispatcher?prod=VNX&page=ConfigGroups_VNX>`_
+The EMC VNX plugin for Fuel has the following requirements:
+
+.. list-table::
+   :widths: 10 25
+   :header-rows: 1
+
+   * - Requirement
+     - Version
+   * - Fuel
+     - 8.0
+   * - EMC VNX array
+     - VNX Operational Environment for Block 5.32 or higher
+
+.. seealso::
+ * :ref:`limit`
+ * :ref:`zabbix`
+
+.. _prereqs:
+
+Prerequisites
+=============
+
+Before you install and start using the Fuel EMC VNX plugin, complete the
+following steps:
+
+#. Install and set up `Fuel 8.0 for Liberty <https://www.mirantis.com/software/mirantis-openstack/releases/>`_.
+   For details, see `Fuel Installation Guide <https://docs.mirantis.com/openstack/fuel/fuel-8.0/fuel-install-guide.html>`_.
+#. Activate the VNX Snapshot and Thin Provisioning license.
+#. Configure and deploy the EMC VNX array.
+#. Verify that the EMC VNX array is reachable through one of the Mirantis
+   OpenStack networks. Both EMC SP IPs and all iSCSI ports should be available
+   over the storage interface from OpenStack nodes.
+#. Configure the EMC VNX back end. For details, see
+   `Openstack Configuration Reference <http://docs.openstack.org/mitaka/config-reference/block-storage/drivers/emc-vnx-driver.html>`_.
+
+For details on EMC VNX configuration, see the
+`official EMC VNX series documentation <https://mydocuments.emc.com/requestMyDoc.jsp>`_.
 
 EMC VNX configuration checklist:
 
 +------------------------------------+-------------------------+
 |Item to confirm                     |  Status (tick if done)  |
 +====================================+=========================+
-|Create username/password            |                         |
+|Create username/password.           |                         |
 +------------------------------------+-------------------------+
-|Create at least one storage pool    |                         |
+|Create at least one storage pool.   |                         |
 +------------------------------------+-------------------------+
 |Configure network:                  |                         |
 |   - for A and B Service Processor  |                         |
 |   - for all iSCSI ports            |                         |
 +------------------------------------+-------------------------+
+| Configure the EMC VNX back end.    |                         |
++------------------------------------+-------------------------+
 
+Install the plugin
+==================
 
-EMC VNX plugin installation
-============================================
+Before you proceed with the Fuel EMC VNX plugin installation, verify that
+you have completed the :ref:`prereqs` steps.
 
-#. Download the plugin from the `Fuel Plugins Catalog <https://www.mirantis.com
-   /products/openstack-drivers-and-plugins/fuel-plugins/>`_.
+To install the Fuel EMC VNX plugin:
 
-#. Copy the plugin on already installed Fuel Master node. If you do not have
-   the Fuel Master node yet, see
-   `Quick Start Guide <https://software.mirantis.com/quick-start/>`_::
+#. Go to the
+   `Fuel plugins' catalog <https://www.mirantis.com/validated-solution-integrations/fuel-plugins>`_.
 
-    # scp emc_vnx-3.0-3.0.0-1.noarch.rpm root@<the_Fuel_Master_node_IP>:/tmp
+#. From the :guilabel:`Filter` drop-down menu, select the Mirantis OpenStack
+   version 8.0 and the :guilabel:`STORAGE` category.
 
-#. Log into the Fuel Master node. Install the plugin::
+#. Find Fuel EMC VNX plugin in the plugins' list and download its ``.rpm``
+   file.
+
+#. Copy the ``.rpm`` file to the Fuel Master node:
+
+   .. code-block:: console
+
+    # scp emc_vnx-3.0-3.0.0-1.noarch.rpm root@<FUEL_MASTER_NODE_IP>:/tmp
+
+#. Log into the Fuel Master node CLI as root.
+
+#. Install the plugin:
+
+   .. code-block:: console
 
     # cd /tmp
     # fuel plugins --install emc_vnx-3.0-3.0.0-1.noarch.rpm
 
-#. Check if the plugin was installed successfully::
+#. Verify that the plugin was installed successfully:
+
+   .. code-block:: console
 
     # fuel plugins
+
     id | name    | version | package_version
     ---|---------|---------|----------------
     1  | emc_vnx | 3.0.0   | 3.0.0
 
+#. Proceed to :ref:`configure_env`.
 
-EMC VNX plugin removal
-============================================
+.. raw:: latex
 
-#. Delete all Environments in which EMC VNX plugin has been enabled.
-
-#. Uninstall the plugin:
-
-    # fuel plugins --remove emc_vnx==3.0.0
-
-#. Check if the plugin was uninstalled successfully::
-
-    # fuel plugins
-    id | name                      | version  | package_version
-    ---|---------------------------|----------|------
+   \pagebreak
