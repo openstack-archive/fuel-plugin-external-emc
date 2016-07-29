@@ -14,7 +14,7 @@ pygments_style = 'sphinx'
 
 latex_documents = [
   ('index','fuel-plugin-external-emc-doc.tex',
-   u'EMC VNX plugin for Fuel Documentation',
+   u'Fuel EMC VNX plugin documentation',
    u'Mirantis Inc.', 'manual')
 ]
 
