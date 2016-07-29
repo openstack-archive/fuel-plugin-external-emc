@@ -1,20 +1,38 @@
 .. _fuel-plugin-external-emc:
 
-****************************************************************
-Guide to the EMC VNX Plugin version 3.0.0 for Fuel
-****************************************************************
+=================================================
+Welcome to the Fuel EMC VNX plugin documentation!
+=================================================
 
-This document provides instructions for installing, configuring and using
-EMC VNX plugin for Fuel.
+Overview
+========
 
 .. toctree::
-    :maxdepth: 2
-    :numbered:
+    :maxdepth: 1
 
-    terms.rst
-    description.rst
+    intro.rst
+    zabbix-versions.rst
+    limitations.rst
+    release-notes.rst
+    licenses.rst
+    references.rst
+
+Installing and configuring Fuel EMC VNX plugin
+==============================================
+
+.. toctree::
+    :maxdepth: 1
+
     installation.rst
     configuration.rst
-    guide.rst
+    verification.rst
+    removal.rst
+
+Using Fuel EMC VNX plugin
+=========================
+
+.. toctree::
+    :maxdepth: 1
+
+    user.rst
     troubleshooting.rst
-    appendix.rst
