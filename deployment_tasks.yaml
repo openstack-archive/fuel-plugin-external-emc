@@ -1,27 +1,27 @@
-- id: emc-primary-controller
-  groups: ['primary-controller']
-  type: puppet
-  parameters:
-    puppet_manifest: puppet/manifests/primary_controller.pp
-    puppet_modules: puppet/modules:/etc/puppet/modules
-    timeout: 360
-  required_for: [deploy_end]
-  requires: [controller_remaining_tasks]
 - id: emc-controller
-  role: ['controller']
+  groups: ['primary-controller','controller']
   type: puppet
+  version: 2.0.0
   parameters:
     puppet_manifest: puppet/manifests/controller.pp
     puppet_modules: puppet/modules:/etc/puppet/modules
     timeout: 360
-  requires: [post_deployment_start]
-  required_for: [post_deployment_end]
+    strategy:
+      type: parallel
+      amount: 1
+  required_for: [deploy_end]
+  requires: [controller_remaining_tasks]
+
 - id: emc-compute
   role: ['compute']
   type: puppet
+  version: 2.0.0
   parameters:
     puppet_manifest: puppet/manifests/compute.pp
     puppet_modules: puppet/modules:/etc/puppet/modules
     timeout: 360
-  requires: [post_deployment_start]
-  required_for: [post_deployment_end]
+    strategy:
+      type: parallel
+      amount: 10
+  requires: [top-role-compute, enable_nova_compute_service]
+  required_for: [deploy_end]

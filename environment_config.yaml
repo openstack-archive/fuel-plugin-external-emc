@@ -1,4 +1,15 @@
 attributes:
+  emc_driver:
+    type: "select"
+    weight: 65
+    value: "ISCSI"
+    label: "Cinder Volume Driver"
+    description: "Driver type"
+    values:
+      - data: "FC"
+        label: "Fiber Channel"
+      - data: "ISCSI"
+        label: "ISCSI"
   emc_username:
     value: "username"
     label: "EMC VNX username"

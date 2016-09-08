@@ -19,9 +19,32 @@ class plugin_emc_vnx::controller {
   include ::cinder::params
 
   $plugin_settings = hiera('emc_vnx')
+  $service_name = $::cinder::params::volume_service
 
-  package {$::plugin_emc_vnx::params::navicli_package_name:
-    ensure => present,
+  $metadata = {
+    'resource-stickiness' => '100',
+  }
+
+  $operations = {
+    'monitor'   => {
+      'interval'  => '20',
+      'timeout'   => '10',
+    },
+    'start'     => {
+      'interval'  => '0',
+      'timeout'   => '60',
+    },
+    'stop'      => {
+      'interval'  => '0',
+      'timeout'   => '60',
+    }
+  }
+
+  $primitive_type = 'cinder-volume'
+
+  $parameters = {
+    'amqp_server_port' => hiera('amqp_port'),
+    'multibackend'     => true,
   }
 
   if $::cinder::params::volume_package {
@@ -31,8 +54,22 @@ class plugin_emc_vnx::controller {
     Package[$::cinder::params::volume_package] -> Cinder_config<||>
   }
 
+  case $plugin_settings['emc_driver'] {
+    FC: { cinder_config {
+            'DEFAULT/volume_driver': value => 'cinder.volume.drivers.emc.emc_cli_fc.EMCCLIFCDriver';
+          }
+        }
+    ISCSI: { cinder_config {
+            'DEFAULT/volume_driver': value => 'cinder.volume.drivers.emc.emc_cli_iscsi.EMCCLIISCSIDriver';
+          }
+        }
+    default: { cinder_config {
+            'DEFAULT/volume_driver': value => 'cinder.volume.drivers.emc.emc_cli_iscsi.EMCCLIISCSIDriver';
+          }
+        }
+  }
+
   cinder_config {
-    'DEFAULT/volume_driver':                    value => 'cinder.volume.drivers.emc.emc_cli_iscsi.EMCCLIISCSIDriver';
     'DEFAULT/san_ip':                           value => $plugin_settings['emc_sp_a_ip'];
     'DEFAULT/san_secondary_ip':                 value => $plugin_settings['emc_sp_b_ip'];
     'DEFAULT/san_login':                        value => $plugin_settings['emc_username'];
@@ -53,7 +90,11 @@ class plugin_emc_vnx::controller {
     }
   }
 
-  Cinder_config<||> ~> Service['cinder_volume']
+  Cinder_config<||> ~> Service[$service_name]
+
+  package {$::plugin_emc_vnx::params::navicli_package_name:
+    ensure => present,
+  }
 
   file {'cinder-volume-agent-ocf':
     path   =>'/usr/lib/ocf/resource.d/fuel/cinder-volume',
@@ -61,26 +102,26 @@ class plugin_emc_vnx::controller {
     owner  => root,
     group  => root,
     source => 'puppet:///modules/plugin_emc_vnx/ocf/cinder-volume',
-    before => Service['cinder_volume'],
   }
 
-  service { 'cinder_volume-init_stopped':
-    ensure     => stopped,
-    name       => $::cinder::params::volume_service,
-    enable     => false,
-    hasstatus  => true,
-    hasrestart => true,
-    before     => Service['cinder_volume'],
+  pacemaker::service { $service_name :
+    primitive_type     => $primitive_type,
+    metadata           => $metadata,
+    parameters         => $parameters,
+    operations         => $operations,
+    require            => File['cinder-volume-agent-ocf'],
   }
 
-  service { 'cinder_volume':
+  service { 'cinder-volume':
     ensure     => running,
-    name       => "p_${::cinder::params::volume_service}",
+    name       => $service_name,
     enable     => true,
     hasstatus  => true,
     hasrestart => true,
-    provider   => 'pacemaker',
     require    => Package[$::plugin_emc_vnx::params::navicli_package_name],
   }
+
+  Pcmk_resource["p_${service_name}"] ->
+  Service[$service_name]
 
 }
