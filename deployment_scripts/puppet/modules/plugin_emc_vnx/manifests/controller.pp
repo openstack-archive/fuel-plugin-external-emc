@@ -31,8 +31,22 @@ class plugin_emc_vnx::controller {
     Package[$::cinder::params::volume_package] -> Cinder_config<||>
   }
 
+  case $plugin_settings['emc_driver'] {
+    FC: { cinder_config {
+            'DEFAULT/volume_driver': value => 'cinder.volume.drivers.emc.emc_cli_fc.EMCCLIFCDriver';
+          }
+        }
+    ISCSI: { cinder_config {
+            'DEFAULT/volume_driver': value => 'cinder.volume.drivers.emc.emc_cli_iscsi.EMCCLIISCSIDriver';
+          }
+        }
+    default: { cinder_config {
+            'DEFAULT/volume_driver': value => 'cinder.volume.drivers.emc.emc_cli_iscsi.EMCCLIISCSIDriver';
+          }
+        }
+  }
+
   cinder_config {
-    'DEFAULT/volume_driver':                    value => 'cinder.volume.drivers.emc.emc_cli_iscsi.EMCCLIISCSIDriver';
     'DEFAULT/san_ip':                           value => $plugin_settings['emc_sp_a_ip'];
     'DEFAULT/san_secondary_ip':                 value => $plugin_settings['emc_sp_b_ip'];
     'DEFAULT/san_login':                        value => $plugin_settings['emc_username'];
@@ -53,7 +67,7 @@ class plugin_emc_vnx::controller {
     }
   }
 
-  Cinder_config<||> ~> Service['cinder_volume']
+  Cinder_config<||> ~> Service<| title == 'cinder-volume' |>
 
   file {'cinder-volume-agent-ocf':
     path   =>'/usr/lib/ocf/resource.d/fuel/cinder-volume',
@@ -61,26 +75,7 @@ class plugin_emc_vnx::controller {
     owner  => root,
     group  => root,
     source => 'puppet:///modules/plugin_emc_vnx/ocf/cinder-volume',
-    before => Service['cinder_volume'],
   }
 
-  service { 'cinder_volume-init_stopped':
-    ensure     => stopped,
-    name       => $::cinder::params::volume_service,
-    enable     => false,
-    hasstatus  => true,
-    hasrestart => true,
-    before     => Service['cinder_volume'],
-  }
-
-  service { 'cinder_volume':
-    ensure     => running,
-    name       => "p_${::cinder::params::volume_service}",
-    enable     => true,
-    hasstatus  => true,
-    hasrestart => true,
-    provider   => 'pacemaker',
-    require    => Package[$::plugin_emc_vnx::params::navicli_package_name],
-  }
-
+  File<|title == 'cinder-volume-agent-ocf'|> ~>  Service<| title == 'cinder-volume' |>
 }

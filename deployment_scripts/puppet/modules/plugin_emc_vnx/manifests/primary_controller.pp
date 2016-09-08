@@ -17,35 +17,21 @@ class plugin_emc_vnx::primary_controller {
 
   include plugin_emc_vnx::controller
 
-  cs_resource { "p_${::cinder::params::volume_service}":
-    ensure          => present,
-    require         => File['cinder-volume-agent-ocf'],
-    primitive_class => 'ocf',
-    provided_by     => 'fuel',
-    primitive_type  => 'cinder-volume',
-    metadata        => { 'resource-stickiness' => '100' },
-    parameters      => {
+
+  cluster::corosync::cs_service { 'cinder-volume':
+    require         =>  File['cinder-volume-agent-ocf'],
+    ocf_script      =>  'cinder-volume',
+    csr_parameters  =>  {
       'amqp_server_port' => hiera('amqp_port'),
       'multibackend'     => true,
     },
-    operations      => {
-      'monitor'  => {
-        'interval' => '20',
-        'timeout'  => '10'
-      }
-      ,
-      'start'    => {
-        'timeout' => '60'
-      }
-      ,
-      'stop'     => {
-        'timeout' => '60'
-      }
-    },
+    csr_metadata    => { 'resource-stickiness' => '100' },
+    csr_mon_intr    => '20',
+    csr_mon_timeout => '10',
+    csr_timeout     => '60',
+    package_name    => 'cinder-volume',
+    service_title   => 'cinder-volume',
+    service_name    => 'cinder-volume',
   }
-
-  Service['cinder_volume-init_stopped'] ->
-    Cs_resource["p_${::cinder::params::volume_service}"] ->
-    Service['cinder_volume']
 
 }
