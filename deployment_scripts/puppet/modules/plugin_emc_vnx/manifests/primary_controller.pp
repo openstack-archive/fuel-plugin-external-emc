@@ -17,11 +17,11 @@ class plugin_emc_vnx::primary_controller {
 
   include plugin_emc_vnx::controller
 
-  cs_resource { "p_${::cinder::params::volume_service}":
+  pcmk_resource { "p_${::cinder::params::volume_service}":
     ensure          => present,
     require         => File['cinder-volume-agent-ocf'],
     primitive_class => 'ocf',
-    provided_by     => 'fuel',
+    primitive_provider => 'fuel',
     primitive_type  => 'cinder-volume',
     metadata        => { 'resource-stickiness' => '100' },
     parameters      => {
@@ -29,23 +29,22 @@ class plugin_emc_vnx::primary_controller {
       'multibackend'     => true,
     },
     operations      => {
-      'monitor'  => {
-        'interval' => '20',
-        'timeout'  => '10'
+      'monitor'     => {
+        'interval'  => '20',
+        'timeout'   => '10'
       }
       ,
-      'start'    => {
-        'timeout' => '60'
+      'start'       => {
+        'timeout'   => '60'
       }
       ,
-      'stop'     => {
-        'timeout' => '60'
+      'stop'        => {
+        'timeout'   => '60'
       }
     },
   }
 
   Service['cinder_volume-init_stopped'] ->
-    Cs_resource["p_${::cinder::params::volume_service}"] ->
-    Service['cinder_volume']
-
+  Pcmk_resource["p_${::cinder::params::volume_service}"] ->
+  Service['cinder_volume']
 }
