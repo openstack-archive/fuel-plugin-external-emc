@@ -1,0 +1,9 @@
+Verified+1: Plugins CI <plugins.ci@mirantis.com>
+Code-Review+2: Illia Polliul <ipolliul@mirantis.com>
+Workflow+1: Illia Polliul <ipolliul@mirantis.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Wed, 21 Sep 2016 14:19:40 +0000
+Reviewed-on: https://review.openstack.org/374170
+Project: openstack/fuel-plugin-external-emc
+Branch: refs/heads/master
