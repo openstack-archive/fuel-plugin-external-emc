@@ -5,7 +5,7 @@ Limitations
 
 The EMC VNX plugin has the following limitations:
 
-#. Since only one storage network is available in Fuel 8.x on OpenStack
+#. Since only one storage network is available in Fuel on OpenStack
    nodes, multipath will bind all storage paths from EMC on one network
    interface. In case this NIC fails, the communication with storage is
    lost.

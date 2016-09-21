@@ -7,8 +7,8 @@ master_doc = 'index'
 project = u'EMC VNX plugin for Fuel'
 copyright = u'2016, Mirantis Inc.'
 
-version = '3.0'
-release = '3.0-3.0.0-1'
+version = '4.0'
+release = '4.0-4.0.0-1'
 
 pygments_style = 'sphinx'
 

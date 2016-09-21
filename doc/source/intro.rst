@@ -2,7 +2,7 @@ Introduction
 ============
 
 This documentation provides instructions for installing, configuring, and
-using the Fuel EMC VNX plugin version 3.0.0.
+using the Fuel EMC VNX plugin version 4.0.0.
 
 The EMC VNX plugin for Fuel extends the Mirantis OpenStack functionality by
 adding support for the EMC VNX arrays in Cinder using the iSCSI protocol. It

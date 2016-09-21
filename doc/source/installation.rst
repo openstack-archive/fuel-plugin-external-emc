@@ -12,7 +12,7 @@ The EMC VNX plugin for Fuel has the following requirements:
    * - Requirement
      - Version
    * - Fuel
-     - 8.0
+     - 9.0
    * - EMC VNX array
      - VNX Operational Environment for Block 5.32 or higher
 
@@ -28,8 +28,8 @@ Prerequisites
 Before you install and start using the Fuel EMC VNX plugin, complete the
 following steps:
 
-#. Install and set up `Fuel 8.0 for Liberty <https://www.mirantis.com/software/mirantis-openstack/releases/>`_.
-   For details, see `Fuel Installation Guide <https://docs.mirantis.com/openstack/fuel/fuel-8.0/fuel-install-guide.html>`_.
+#. Install and set up `Fuel 9.0 for Mitaka <https://www.mirantis.com/software/mirantis-openstack/releases/>`_.
+   For details, see `Fuel Installation Guide <http://docs.openstack.org/developer/fuel-docs/userdocs/fuel-install-guide.html>`_.
 #. Activate the VNX Snapshot and Thin Provisioning license.
 #. Configure and deploy the EMC VNX array.
 #. Verify that the EMC VNX array is reachable through one of the Mirantis
@@ -78,7 +78,7 @@ To install the Fuel EMC VNX plugin:
 
    .. code-block:: console
 
-    # scp emc_vnx-3.0-3.0.0-1.noarch.rpm root@<FUEL_MASTER_NODE_IP>:/tmp
+    # scp emc_vnx-4.0-4.0.0-1.noarch.rpm root@<FUEL_MASTER_NODE_IP>:/tmp
 
 #. Log into the Fuel Master node CLI as root.
 
@@ -87,7 +87,7 @@ To install the Fuel EMC VNX plugin:
    .. code-block:: console
 
     # cd /tmp
-    # fuel plugins --install emc_vnx-3.0-3.0.0-1.noarch.rpm
+    # fuel plugins --install emc_vnx-4.0-4.0.0-1.noarch.rpm
 
 #. Verify that the plugin was installed successfully:
 
@@ -97,7 +97,7 @@ To install the Fuel EMC VNX plugin:
 
     id | name    | version | package_version
     ---|---------|---------|----------------
-    1  | emc_vnx | 3.0.0   | 3.0.0
+    1  | emc_vnx | 4.0.0   | 4.0.0
 
 #. Proceed to :ref:`configure_env`.
 

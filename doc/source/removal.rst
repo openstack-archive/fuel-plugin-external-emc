@@ -14,7 +14,7 @@ To uninstall the EMC VNX plugin, complete the following steps:
 
    .. code-block:: console
 
-    # fuel plugins --remove emc_vnx==3.0.0
+    # fuel plugins --remove emc_vnx==4.0.0
 
 #. Verify whether the VMware DVS plugin was uninstalled successfully:
 
@@ -49,7 +49,7 @@ To uninstall the Zabbix plugin, complete the following steps:
     # fuel plugins
 
    The Zabbix plugin should not appear in the output list.
-   
+
 .. raw:: latex
 
    \pagebreak
