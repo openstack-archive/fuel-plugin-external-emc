@@ -1,4 +1,0 @@
-.build/
-emc_vnx*.noarch.rpm
-repositories/centos/*.rpm
-repositories/ubuntu/*.deb
